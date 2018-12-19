@@ -23,7 +23,7 @@ function pidCheck($fname, $lname, $connect)
 {
     $user = $connect->query("SELECT * FROM piddb.pidors AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
     if(($row = $user->fetch_assoc()) == FALSE){
-        echo 'Скорее всего данный пользователь - натурал. Хотите его добавить?';
+        echo '<p>Пользователь <b>'.$lname.' '.$fname.'</b> не найден. Хотите его добавить?</p>';
         echo '
         <form method="post">
             <input type="hidden" name="fname" value="'.$fname.'">
