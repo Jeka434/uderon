@@ -8,7 +8,7 @@ $sysMessages = "Нет системных сообщений";
 
 function addUser($fname, $lname, $connect)
 {
-    $add = $connect->query("INSERT INTO piddb.toadd (firstname, lastname) VALUES  ('$fname', '$lname')");
+    $add = $connect->query("INSERT INTO piddb.toadd (FirstName, LastName) VALUES  ('$fname', '$lname')");
     if($add){$GLOBALS['sysMessages'] = "Добавлен новый пользователь"; } else{ $GLOBALS['sysMessages'] = "Ошибка добавления";}
 }
 
@@ -21,7 +21,7 @@ if($_POST['add'])
 
 function pidCheck($fname, $lname, $connect)
 {
-    $num = $connect->query("SELECT COUNT(*) FROM piddb.pidors AS pid GROUP BY pid.firstname, pid.lastname HAVING pid.firstname=$fname AND pid.lastname=$lname");
+    $num = $connect->query("SELECT COUNT(*) FROM piddb.pidors AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName=$fname AND pid.LastName=$lname");
     if($num == 0){
         echo 'Скорее всего данный пользователь - натурал. Хотите его добавить?';
         echo '
@@ -59,7 +59,7 @@ function userList($connect)
     while(($row = $users->fetch_assoc()) != FALSE){
         $num++;
         //выводим список на экран
-        echo "<p>".$num.") Имя: ".$row['firstname']." Фамилия: ".$row['lastname']."</p>";
+        echo "<p>".$num.") ".$row['FirstName']." ".$row['LastName']."</p>";
     }
 }
 
