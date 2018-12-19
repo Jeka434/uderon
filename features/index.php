@@ -13,7 +13,6 @@
  <label>Фамилия</label>
  <input type="text" name="lname">
  <input type="submit" name="pidcheck" value="Проверить" >
- <?php userList($connect);?>
  <?php
  //закрываем соединение с БД
  $connect->close();

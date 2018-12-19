@@ -4,12 +4,12 @@ $connect = new mysqli("localhost", "pidor", "password", "piddb" );
 
 $connect->query("SET NAMES 'utf8' ");
 
-$sysMessages = "Нет системных сообщений";
+$sysMessages = "None";
 
 function addUser($fname, $lname, $connect)
 {
     $add = $connect->query("INSERT INTO piddb.toadd (FirstName, LastName) VALUES  ('$fname', '$lname')");
-    if($add){$GLOBALS['sysMessages'] = "Добавлен новый пользователь"; } else{ $GLOBALS['sysMessages'] = "Ошибка добавления";}
+    if($add){$GLOBALS['sysMessages'] = "Заявка на добавление будет рассмотренна"; } else{ $GLOBALS['sysMessages'] = "Ошибка добавления";}
 }
 
 if($_POST['add'])
@@ -32,8 +32,9 @@ function pidCheck($fname, $lname, $connect)
         </form>
         ';
     }else{
-        echo "<p>OP ->".$row['FirstName']."<- OP</p>";
-        echo "<p>"."Имя: ".$fname." Фамилия: ".$lname." Род деятельности: ПИДАРАС</p>";
+        echo "<p>Имя: <b>".$fname."</b></p>
+              <p>Фамилия: <b>".$lname."</b></p>
+              <p>Род деятельности: <b>ПИДАРАС</b></p>";
         //кнопка удаления пользователя
         echo '
               <form method="get">
@@ -66,5 +67,7 @@ function userList($connect)
     }
 }
 
-echo "<p style='color: darkgreen; font-size: 18px;'>".$sysMessages."</p>" ;
+if ($sysMessages != "None") {
+    echo "<p style='color: darkgreen; font-size: 18px;'>".$sysMessages."</p>" ;
+}
 ?>
