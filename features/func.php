@@ -21,7 +21,7 @@ if($_POST['add'])
 
 function pidCheck($fname, $lname, $connect)
 {
-    $num = $connect->query("SELECT COUNT(*) FROM piddb.pidors AS pid GROUP BY pid.firstname, pid.lastname HAVING pid.firstname=$fname, pid.lastname=$lname");
+    $num = $connect->query("SELECT COUNT(*) FROM piddb.pidors AS pid GROUP BY pid.firstname, pid.lastname HAVING pid.firstname=$fname AND pid.lastname=$lname");
     if($num == 0){
         echo 'Скорее всего данный пользователь - натурал. Хотите его добавить?';
         echo '
@@ -48,6 +48,28 @@ if($_POST['pidcheck']){
 
 if($_GET['del']){
     $GLOBALS['sysMessages'] = "Ваше мнение очень важно для нас!";
+}
+
+function userList($connect)
+{
+    $users = $connect->query("SELECT * FROM pidors");
+    echo "<p>Всего пользователей в базе: ".$users->num_rows."</p>";
+    $num = 0;
+    //засовываем все записи в ассоциативный массив и перебираем их
+    while(($row = $users->fetch_assoc()) != FALSE){
+        $num++;
+        $id = $row['id'];
+        //выводим список на экран
+        echo "<p>".$num.") Имя: ".$row['fname']." Фамилия: ".$row['lname']."</p>";
+
+        //кнопка удаления пользователя
+        echo '
+              <form method="get">
+                <input type="hidden" name="id" value="'.$id.'">
+                <input type="submit" name="del" value="Удалить пользователя" >
+              </form>
+        ';
+    }
 }
 
 echo "<p style='color: darkgreen; font-size: 18px;'>".$sysMessages."</p>" ;
