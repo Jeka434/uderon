@@ -36,7 +36,7 @@ function pidCheck($fname, $lname, $connect)
               <form method="get">
                 <input type="submit" name="del" value="Удалить пользователя" >
               </form>
-        '; 
+        ';
     }
 }
 
