@@ -12,7 +12,7 @@
  <input type="text" name="fname">
  <label>Фамилия</label>
  <input type="text" name="lname">
- <input type="submit" name="pidcheck" value="Добавить в базу" >
+ <input type="submit" name="pidcheck" value="Проверить" >
  <?php
  //закрываем соединение с БД
  $connect->close();
