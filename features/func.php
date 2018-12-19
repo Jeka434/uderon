@@ -22,6 +22,7 @@ if($_POST['add'])
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     addUser($fname, $lname, $connect);
+    echo $_POST['del'];
 }
 
 function pidCheck($fname, $lname, $connect)
@@ -42,7 +43,7 @@ function pidCheck($fname, $lname, $connect)
               <p>Род деятельности: <b>ПИДАРАС</b></p>";
         //кнопка удаления пользователя
         echo '
-              <form method="get">
+              <form method="post">
                 <input type="submit" name="del" value="Удалить пользователя" >
               </form>
         ';
@@ -55,7 +56,7 @@ if($_POST['pidcheck']){
     pidCheck($fname, $lname, $connect);
 }
 
-if($_GET['del']){
+if($_POST['del']){
     $GLOBALS['sysMessages'] = "Ваше мнение очень важно для нас!";
 }
 
@@ -72,7 +73,7 @@ function userList($connect)
     }
 }
 
-if ($sysMessages != "None") {
+if (!($sysMessages === "None")) {
     echo "<p style='color: darkgreen; font-size: 18px;'>".$sysMessages."</p>" ;
 }
 ?>
