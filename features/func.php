@@ -28,7 +28,7 @@ function pidCheck($fname, $lname, $connect)
         <form method="post">
             <input type="submit" name="add" value="Добавить в базу" >
         </form>
-        '
+        ';
     }else{
         echo "<p>"."Имя: ".$fname." Фамилия: ".$lname." Род деятельности: ПИДАРАС</p>";
         //кнопка удаления пользователя
