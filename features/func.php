@@ -21,7 +21,7 @@ if($_POST['add'])
 
 function pidCheck($fname, $lname, $connect)
 {
-    $num = $connect->query("SELECT COUNT(*) FROM piddb.pidors AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName=$fname AND pid.LastName=$lname");
+    $num = $connect->query("SELECT COUNT(*) FROM piddb.pidors AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
     if($num == 0){
         echo 'Скорее всего данный пользователь - натурал. Хотите его добавить?';
         echo '
