@@ -26,6 +26,8 @@ function pidCheck($fname, $lname, $connect)
         echo 'Скорее всего данный пользователь - натурал. Хотите его добавить?';
         echo '
         <form method="post">
+            <input type="hidden" name="fname" value="'.$fname.'">
+            <input type="hidden" name="lname" value="'.$lname.'">
             <input type="submit" name="add" value="Добавить в базу" >
         </form>
         ';
