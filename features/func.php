@@ -22,6 +22,7 @@ if($_POST['add'])
 function pidCheck($fname, $lname, $connect)
 {
     $num = $connect->query("SELECT COUNT(*) FROM piddb.pidors AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
+    $str = $connect->query("SELECT TOP 1 pid.LastName FROM piddb.pidors AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
     if($num == 0){
         echo 'Скорее всего данный пользователь - натурал. Хотите его добавить?';
         echo '
@@ -30,6 +31,7 @@ function pidCheck($fname, $lname, $connect)
         </form>
         ';
     }else{
+        echo $str;
         echo "<p>"."Имя: ".$fname." Фамилия: ".$lname." Род деятельности: ПИДАРАС</p>";
         //кнопка удаления пользователя
         echo '
