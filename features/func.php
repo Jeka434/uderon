@@ -31,7 +31,7 @@ function pidCheck($fname, $lname, $connect)
         </form>
         ';
     }else{
-        echo $str;
+        echo "<p>OP ->".$str."<- OP</p>";
         echo "<p>"."Имя: ".$fname." Фамилия: ".$lname." Род деятельности: ПИДАРАС</p>";
         //кнопка удаления пользователя
         echo '
