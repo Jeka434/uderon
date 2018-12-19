@@ -1,6 +1,6 @@
 <?php
 
-$connect = new mysqli("localhost", "pidar", "password", "piddb" );
+$connect = new mysqli("localhost", "pidor", "password", "piddb" );
 
 $connect->query("SET NAMES 'utf8' ");
 
@@ -58,17 +58,8 @@ function userList($connect)
     //засовываем все записи в ассоциативный массив и перебираем их
     while(($row = $users->fetch_assoc()) != FALSE){
         $num++;
-        $id = $row['id'];
         //выводим список на экран
-        echo "<p>".$num.") Имя: ".$row['fname']." Фамилия: ".$row['lname']."</p>";
-
-        //кнопка удаления пользователя
-        echo '
-              <form method="get">
-                <input type="hidden" name="id" value="'.$id.'">
-                <input type="submit" name="del" value="Удалить пользователя" >
-              </form>
-        ';
+        echo "<p>".$num.") Имя: ".$row['firstname']." Фамилия: ".$row['lastname']."</p>";
     }
 }
 
