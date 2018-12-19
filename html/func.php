@@ -59,6 +59,8 @@ if($_POST['pidcheck']){
 }
 
 if($_POST['del']){
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
     $del = $connect->query("DELETE FROM pidwart WHERE FirstName = '$fname' AND LastName = '$lname'");
     if($del){
         $GLOBALS['sysMessages'] = "Пользователь удален. <a href='/'>Обновить Страницу</a>";
