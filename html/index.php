@@ -1,4 +1,3 @@
-<?php include_once ("func.php");?>
 <!doctype html>
 <head>
  <meta charset="UTF-8">
@@ -6,6 +5,7 @@
  <title>Пользователи - Uderon</title>
 </head>
 <body>
+<?php include_once ("func.php");?>
 <h2>Проверить пользователя</h2>
 <form method="post">
  <label>Имя</label>
