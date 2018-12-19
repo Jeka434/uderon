@@ -8,7 +8,7 @@ $sysMessages = "None";
 
 function addUser($fname, $lname, $connect)
 {
-    $user = $connect->query("SELECT * FROM piddb.pidors AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
+    $user = $connect->query("SELECT * FROM piddb.toadd AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
     if(($row = $user->fetch_assoc()) == FALSE){
         $add = $connect->query("INSERT INTO piddb.toadd (FirstName, LastName) VALUES  ('$fname', '$lname')");
         if($add){$GLOBALS['sysMessages'] = "Заявка на добавление будет рассмотренна"; } else{ $GLOBALS['sysMessages'] = "Ошибка добавления";}
