@@ -6,7 +6,7 @@
  <title>Пользователи - Uderon</title>
 </head>
 <body>
-<h2>Добавить пользователя </h2>
+<h2>Проверить пользователя</h2>
 <form method="post">
  <label>Имя</label>
  <input type="text" name="fname">
