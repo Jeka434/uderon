@@ -21,8 +21,8 @@ function addUser($fname, $lname, $connect)
 
 if($_POST['add'])
 {
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
+    $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
+    $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     addUser($fname, $lname, $connect);
     echo $_POST['del'];
 }
@@ -57,14 +57,14 @@ function pidCheck($fname, $lname, $connect)
 }
 
 if($_POST['pidcheck']){
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
+    $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
+    $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     pidCheck($fname, $lname, $connect);
 }
 
 if($_POST['del']){
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
+    $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
+    $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     $del = $connect->query("DELETE FROM pidwart WHERE FirstName = '$fname' AND LastName = '$lname'");
     if($del){
         $GLOBALS['sysMessages'] = "Пользователь удален. <a href='/'>Обновить Страницу</a>";
