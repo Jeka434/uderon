@@ -23,6 +23,14 @@ if($_POST['add'])
 {
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
+    if(empty($fname) || empty($lname)) {
+        echo "<p>Ошибка: Пустая строка</p>";
+        return;
+    }
+    if(!preg_match("/\A\w+\z/", $fname) || !preg_match("/\A\w+\z/", $lname)) {
+        echo "<p>Ошибка: Недопустимые символы</p>";
+        return;
+    }
     addUser($fname, $lname, $connect);
 }
 
@@ -54,16 +62,26 @@ function pidCheck($fname, $lname, $connect)
 if($_POST['pidcheck']){
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
+    if(empty($fname) || empty($lname)) {
+        echo "<p>Ошибка: Пустая строка</p>";
+        return;
+    }
+    if(!preg_match("/\A\w+\z/", $fname) || !preg_match("/\A\w+\z/", $lname)) {
+        echo "<p>Ошибка: Недопустимые символы</p>";
+        return;
+    }
     pidCheck($fname, $lname, $connect);
 }
 
 if($_POST['del']){
     $id = htmlspecialchars(mysqli_escape_string($connect, $_POST['id']));
-    $del = $connect->query("DELETE FROM pidwart WHERE ID = $id");
-    if($del){
-        $GLOBALS['sysMessages'] = "Пользователь удален. <a href='/'>Обновить Страницу</a>";
-    }else{
-        $GLOBALS['sysMessages'] = " Ошибка удаления";
+    if(is_int($id)){
+        $del = $connect->query("DELETE FROM pidwart WHERE ID = $id");
+        if($del){
+            $GLOBALS['sysMessages'] = "Пользователь удален. <a href='/'>Обновить Страницу</a>";
+        }else{
+            $GLOBALS['sysMessages'] = " Ошибка удаления";
+        }
     }
 }
 
