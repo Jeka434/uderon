@@ -27,7 +27,7 @@ if($_POST['add'])
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка</p>";
         return;
     }
-    if(!preg_match("/^[а-яёА-ЯЁ]+$/u", $fname) || !preg_match("/^[а-яёА-ЯЁ]+$/u", $lname)) {
+    if(!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname)) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимые символы</p>";
         return;
     }
@@ -66,7 +66,7 @@ if($_POST['pidcheck']){
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка</p>";
         return;
     }
-    if(!preg_match("/^[а-яёА-ЯЁ]+$/u", $fname) || !preg_match("/^[а-яёА-ЯЁ]+$/u", $lname)) {
+    if(!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname)) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимые символы</p>";
         return;
     }
