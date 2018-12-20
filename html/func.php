@@ -39,9 +39,9 @@ function pidCheck($fname, $lname, $connect)
     $user = $connect->query("SELECT * FROM piddb.pidwart AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
     echo "<p>Имя: <b>".$fname."</b></p>
           <p>Фамилия: <b>".$lname."</b></p>
-          <p>Ориентация: <b>";
+          <p>Состояние: <b>";
     if(!$user || ($row = $user->fetch_assoc()) == FALSE){
-        echo 'НАТУРАЛ</b></p>
+        echo 'НЕ В БАЗЕ</b></p>
           <form method="post">
             <input type="hidden" name="fname" value="'.$fname.'">
             <input type="hidden" name="lname" value="'.$lname.'">
@@ -50,7 +50,7 @@ function pidCheck($fname, $lname, $connect)
         ';
     }else{
         //кнопка удаления пользователя
-        echo 'ПИДАРАС</b></p>
+        echo 'В БАЗЕ</b></p>
           <form method="post">
             <input type="hidden" name="id" value="'.$row['ID'].'">
             <input type="submit" name="del" value="Удалить пользователя" >
