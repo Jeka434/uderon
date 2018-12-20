@@ -28,7 +28,7 @@ if($_POST['add'])
         return;
     }
     if(!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname)) {
-        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимые символы</p>";
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод</p>";
         return;
     }
     addUser($fname, $lname, $connect);
@@ -67,7 +67,7 @@ if($_POST['pidcheck']){
         return;
     }
     if(!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname)) {
-        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимые символы</p>";
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод</p>";
         return;
     }
     pidCheck($fname, $lname, $connect);
