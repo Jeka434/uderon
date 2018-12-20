@@ -2,10 +2,9 @@
 <head>
  <meta charset="UTF-8">
  <link rel="icon" type="image/png" href="img/favicon.ico" />
- <title>Пользователи - Uderon</title>
+ <title>База пидарков - Uderon</title>
 </head>
 <body>
-<?php include_once ("func.php");?>
 <h2>Проверить пользователя</h2>
 <form method="post">
  <label>Имя</label>
@@ -13,6 +12,7 @@
  <label>Фамилия</label>
  <input type="text" name="lname">
  <input type="submit" name="pidcheck" value="Проверить" >
+ <?php include_once ("func.php");?>
  <?php $connect->close();?>
 </form>
 </body>
