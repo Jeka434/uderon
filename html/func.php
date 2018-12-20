@@ -41,7 +41,7 @@ function pidCheck($fname, $lname, $connect)
           <p>Фамилия: <b>".$lname."</b></p>
           <p>Ориентация: <b>";
     if(!$user || ($row = $user->fetch_assoc()) == FALSE){
-        echo 'НАТУРАЛ</b></p>
+        echo 'НЕИЗВЕСТНО</b></p>
           <form method="post">
             <input type="hidden" name="fname" value="'.$fname.'">
             <input type="hidden" name="lname" value="'.$lname.'">
