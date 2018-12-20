@@ -15,14 +15,14 @@ function addUser($fname, $lname, $connect) {
     }
 }
 
-if ($_POST['add']) {
-    $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
-    $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
+if (isset($_POST['add'])) {
+    $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_fname']));
+    $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_lname']));
     if (empty($fname) || empty($lname)) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка</p>";
         return;
     }
-    if (!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname)) {
+    if (!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname) || iconv_strlen($fname) > 100 || iconv_strlen($lname) > 100) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод</p>";
         return;
     }
@@ -31,42 +31,43 @@ if ($_POST['add']) {
 
 function pidCheck($fname, $lname, $connect) {
     $user = $connect->query("SELECT * FROM piddb.pidwart AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
-    echo "<p>Имя: <b>".$fname."</b></p>
+    echo "<div class=\"userInf\">
+          <p>Имя: <b>".$fname."</b></p>
           <p>Фамилия: <b>".$lname."</b></p>
           <p>Ориентация: <b>";
     if (!$user || ($row = $user->fetch_assoc()) == FALSE) {
         echo 'НЕИЗВЕСТНО</b></p>
           <form method="post">
-            <input type="hidden" name="fname" value="'.$fname.'">
-            <input type="hidden" name="lname" value="'.$lname.'">
+            <input type="hidden" name="_fname" value="'.$fname.'">
+            <input type="hidden" name="_lname" value="'.$lname.'">
             <input type="submit" name="add" value="Добавить в базу" >
-          </form>
+          </form></div>
         ';
     } else {
         echo 'ПИДАРАС</b></p>
           <form method="post">
             <input type="hidden" name="id" value="'.$row['ID'].'">
             <input type="submit" name="del" value="Удалить пользователя" >
-          </form>
+          </form></div>
         ';
     }
 }
 
-if ($_POST['pidcheck']) {
+if (isset($_POST['pidcheck'])) {
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     if (empty($fname) || empty($lname)) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка</p>";
         return;
     }
-    if (!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname)) {
+    if (!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname) || iconv_strlen($fname) > 100 || iconv_strlen($lname) > 100) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод</p>";
         return;
     }
     pidCheck($fname, $lname, $connect);
 }
 
-if ($_POST['del']) {
+if (isset($_POST['del'])) {
     $id = (int)$_POST['id'];
     $del = $connect->query("DELETE FROM pidwart WHERE ID = $id");
     if ($del) {
