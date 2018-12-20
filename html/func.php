@@ -24,11 +24,11 @@ if($_POST['add'])
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     if(empty($fname) || empty($lname)) {
-        echo "<p>Ошибка: Пустая строка</p>";
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка</p>";
         return;
     }
-    if(!preg_match("/\A\w+\z/", $fname) || !preg_match("/\A\w+\z/", $lname)) {
-        echo "<p>Ошибка: Недопустимые символы</p>";
+    if(!preg_match("/^[а-яёА-ЯЁ]+$/u", $fname) || !preg_match("/^[а-яёА-ЯЁ]+$/u", $lname)) {
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимые символы</p>";
         return;
     }
     addUser($fname, $lname, $connect);
@@ -63,11 +63,11 @@ if($_POST['pidcheck']){
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     if(empty($fname) || empty($lname)) {
-        echo "<p>Ошибка: Пустая строка</p>";
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка</p>";
         return;
     }
-    if(!preg_match("/\A\w+\z/", $fname) || !preg_match("/\A\w+\z/", $lname)) {
-        echo "<p>Ошибка: Недопустимые символы</p>";
+    if(!preg_match("/^[а-яёА-ЯЁ]+$/u", $fname) || !preg_match("/^[а-яёА-ЯЁ]+$/u", $lname)) {
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимые символы</p>";
         return;
     }
     pidCheck($fname, $lname, $connect);
