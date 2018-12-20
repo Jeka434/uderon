@@ -74,14 +74,12 @@ if($_POST['pidcheck']){
 }
 
 if($_POST['del']){
-    $id = htmlspecialchars(mysqli_escape_string($connect, $_POST['id']));
-    if(is_int($id)){
-        $del = $connect->query("DELETE FROM pidwart WHERE ID = $id");
-        if($del){
-            $GLOBALS['sysMessages'] = "Пользователь удален. <a href='/'>Обновить Страницу</a>";
-        }else{
-            $GLOBALS['sysMessages'] = " Ошибка удаления";
-        }
+    $id = (int)$_POST['id'];
+    $del = $connect->query("DELETE FROM pidwart WHERE ID = $id");
+    if($del){
+        $GLOBALS['sysMessages'] = "Пользователь удален. <a href='/'>Обновить Страницу</a>";
+    }else{
+        $GLOBALS['sysMessages'] = "Ошибка удаления";
     }
 }
 
