@@ -19,14 +19,16 @@ if (isset($_POST['add'])) {
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_lname']));
     if (empty($fname) || empty($lname)) {
-        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка</p>";
-        return;
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка.</p>";
+    } else if (iconv_strlen($fname) > 100 || iconv_strlen($lname) > 100) {
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Превышено максимальное количество символов.</p>";
+    } else if (!preg_match("/^[А-ЯЁа-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁа-яё]+$/u", $lname)) {
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод. Допускаются только русские буквы.</p>";
+    } else if (!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname)) {
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод. Имя и фамилия должны начинаться с большой буквы.</p>";
+    } else {
+        addUser($fname, $lname, $connect);
     }
-    if (!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname) || iconv_strlen($fname) > 100 || iconv_strlen($lname) > 100) {
-        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод</p>";
-        return;
-    }
-    addUser($fname, $lname, $connect);
 }
 
 function pidCheck($fname, $lname, $connect) {
@@ -57,14 +59,16 @@ if (isset($_POST['pidcheck'])) {
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     if (empty($fname) || empty($lname)) {
-        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка</p>";
-        return;
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка.</p>";
+    } else if (iconv_strlen($fname) > 100 || iconv_strlen($lname) > 100) {
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Превышено максимальное количество символов.</p>";
+    } else if (!preg_match("/^[А-ЯЁа-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁа-яё]+$/u", $lname)) {
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод. Допускаются только русские буквы.</p>";
+    } else if (!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname)) {
+        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод. Имя и фамилия должны начинаться с большой буквы.</p>";
+    } else {
+        pidCheck($fname, $lname, $connect);
     }
-    if (!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname) || iconv_strlen($fname) > 100 || iconv_strlen($lname) > 100) {
-        echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод</p>";
-        return;
-    }
-    pidCheck($fname, $lname, $connect);
 }
 
 if (isset($_POST['del'])) {
@@ -73,7 +77,7 @@ if (isset($_POST['del'])) {
     if ($del) {
         $GLOBALS['sysMessages'] = "Пользователь удален. <a href='/'>Обновить Страницу</a>";
     } else {
-        $GLOBALS['sysMessages'] = "Ошибка удаления";
+        $GLOBALS['sysMessages'] = "Ошибка удаления.";
     }
 }
 
