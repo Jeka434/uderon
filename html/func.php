@@ -9,7 +9,7 @@ $sysMessages = "None";
 function addUser($fname, $lname, $connect)
 {
     $user = $connect->query("SELECT * FROM piddb.pidwart AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
-    if(($row = $user->fetch_assoc()) == FALSE){
+    if(!$user || ($row = $user->fetch_assoc()) == FALSE){
         $add = $connect->query("INSERT INTO piddb.pidwart (FirstName, LastName) VALUES  ('$fname', '$lname')");
         if($add){
             $GLOBALS['sysMessages'] = "Пользователь добавлен. <a href='/'>Обновить Страницу</a>";
@@ -24,17 +24,16 @@ if($_POST['add'])
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     addUser($fname, $lname, $connect);
-    echo $_POST['del'];
 }
 
 function pidCheck($fname, $lname, $connect)
 {
     $user = $connect->query("SELECT * FROM piddb.pidwart AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
-    if(($row = $user->fetch_assoc()) == FALSE){
-        echo "<p>Имя: <b>".$fname."</b></p>
-              <p>Фамилия: <b>".$lname."</b></p>
-              <p>Ориентация: <b>НАТУРАЛ</b></p>";
-        echo '
+    echo "<p>Имя: <b>".$fname."</b></p>
+          <p>Фамилия: <b>".$lname."</b></p>
+          <p>Ориентация: <b>";
+    if(!$user || ($row = $user->fetch_assoc()) == FALSE){
+        echo 'НАТУРАЛ</b></p>
           <form method="post">
             <input type="hidden" name="fname" value="'.$fname.'">
             <input type="hidden" name="lname" value="'.$lname.'">
@@ -42,14 +41,10 @@ function pidCheck($fname, $lname, $connect)
           </form>
         ';
     }else{
-        echo "<p>Имя: <b>".$fname."</b></p>
-              <p>Фамилия: <b>".$lname."</b></p>
-              <p>Ориентация: <b>ПИДАРАС</b></p>";
         //кнопка удаления пользователя
-        echo '
+        echo 'ПИДАРАС</b></p>
           <form method="post">
-            <input type="hidden" name="fname" value="'.$fname.'">
-            <input type="hidden" name="lname" value="'.$lname.'">
+            <input type="hidden" name="id" value="'.$row['ID'].'">
             <input type="submit" name="del" value="Удалить пользователя" >
           </form>
         ';
@@ -63,9 +58,8 @@ if($_POST['pidcheck']){
 }
 
 if($_POST['del']){
-    $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
-    $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
-    $del = $connect->query("DELETE FROM pidwart WHERE FirstName = '$fname' AND LastName = '$lname'");
+    $id = htmlspecialchars(mysqli_escape_string($connect, $_POST['id']));
+    $del = $connect->query("DELETE FROM pidwart WHERE ID = $id");
     if($del){
         $GLOBALS['sysMessages'] = "Пользователь удален. <a href='/'>Обновить Страницу</a>";
     }else{
