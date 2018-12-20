@@ -11,7 +11,11 @@ function addUser($fname, $lname, $connect)
     $user = $connect->query("SELECT * FROM piddb.pidwart AS pid GROUP BY pid.FirstName, pid.LastName HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
     if(($row = $user->fetch_assoc()) == FALSE){
         $add = $connect->query("INSERT INTO piddb.pidwart (FirstName, LastName) VALUES  ('$fname', '$lname')");
-        if($add){$GLOBALS['sysMessages'] = "Заявка на добавление будет рассмотренна"; } else{ $GLOBALS['sysMessages'] = "Ошибка добавления";}
+        if($add){
+            $GLOBALS['sysMessages'] = "Пользователь добавлен. <a href='/'>Обновить Страницу</a>";
+        }else{
+            $GLOBALS['sysMessages'] = "Ошибка добавления";
+        }
     }
 }
 
