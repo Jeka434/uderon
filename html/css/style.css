@@ -1,6 +1,7 @@
 * {
-  margin: 1;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
+  text-overflow: inherit;
 }
 
 html, body {
@@ -9,6 +10,97 @@ html, body {
   background-color: #f0f0f0;
 }
 
+h2 {
+  margin: 10px;
+  text-align: center;
+}
+
+a:link {
+  color:#0645AD;
+}
+a:visited {
+  color:#0645AD;
+}
+a:hover {
+  color:#0645AD;
+}
+a:active {
+  color:#0645AD;
+}
+
+/* Тело */
+.mainBody {
+  width: 70%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fafafa;
+  overflow: hidden;
+}
+
+/* Заголовок */
+.head {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Форма для проверки */
+.mainForm {
+  margin-left: 10px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* Строка отчета */
+.log {
+  margin-top: 15px;
+  line-height: 150%;
+  font-size: 18px;
+  text-align: center;
+}
+
+.finelog {
+  margin-top: 15px;
+  line-height: 150%;
+  font-size: 18px;
+  text-align: center;
+  color: darkgreen;
+}
+
+.errlog {
+  margin-top: 15px;
+  line-height: 150%;
+  font-size: 18px;
+  text-align: center;
+  color: darkred;
+}
+
+/* Данные пользователя */
 .userInf {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 25px;
+  padding: 10px;
+  padding-top: 15px;
+  border-top: 3px double #ccc;
+  overflow: hidden;
+}
+
+.urow {
+  height: 1;
+  line-height: 150%;
+}
+
+.ulabel {
+  float: left;
+  width: 100px;
+}
+
+.ulabeled {
+  font-weight: bold;
+}
+
+.button {
+  margin-top: 17px;
 }
