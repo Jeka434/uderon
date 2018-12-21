@@ -13,13 +13,13 @@ function setLog(bool $value = TRUE) {
 }
 
 function checkstr($str) {
-  if (empty($fname) || empty($lname)) {
+  if (empty($str)) {
     $GLOBALS['sysMessages'] = "Ошибка: Пустая строка.";
-  } else if (iconv_strlen($fname) > 37 || iconv_strlen($lname) > 37) {
+  } else if (iconv_strlen($str) > 37) {
     $GLOBALS['sysMessages'] = "Ошибка: Превышено максимальное количество символов.";
-  } else if (!preg_match("/^[А-ЯЁа-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁа-яё]+$/u", $lname)) {
+  } else if (!preg_match("/^[А-ЯЁа-яё]+$/u", $str)) {
     $GLOBALS['sysMessages'] = "Ошибка: Недопустимый ввод. Допускаются только русские буквы.";
-  } else if (!preg_match("/^[А-ЯЁ][а-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁ][а-яё]+$/u", $lname)) {
+  } else if (!preg_match("/^[А-ЯЁ][а-яё]+$/u", $str)) {
     $GLOBALS['sysMessages'] = "Ошибка: Недопустимый ввод. Имя и фамилия должны начинаться с большой буквы.";
   } else {
     return TRUE;
