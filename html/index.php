@@ -7,15 +7,18 @@
  <title>База пидарков - Uderon</title>
 </head>
 <body>
-<h2>Проверить пользователя</h2>
-<form method="post">
- <label>Имя</label>
- <input type="text" name="fname">
- <label>Фамилия</label>
- <input type="text" name="lname">
- <input type="submit" name="pidcheck" value="Проверить" >
- <?php include_once ("func.php");?>
- <?php $connect->close();?>
-</form>
+  <div class="mainBody">
+    <div class="head">
+      <h2>Проверить пользователя</h2>
+      <form class="mainForm" method="post">
+        <label>Имя</label>
+        <input type="text" name="fname">
+        <label>Фамилия</label>
+        <input type="text" name="lname">
+        <input type="submit" name="pidcheck" value="Проверить">
+      </form>
+    </div>
+    <?php include_once ("func.php");?>
+  </div>
 </body>
 </html>
