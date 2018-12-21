@@ -95,7 +95,7 @@ function pidCheck($fname, $lname, $connect) {
 if (isset($_POST['pidcheck'])) {
   $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
   $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
-  if (checkstr($fname) && checkstr($lname) {
+  if (checkstr($fname) && checkstr($lname)) {
     pidCheck($fname, $lname, $connect);
   }
 }
