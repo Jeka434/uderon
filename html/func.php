@@ -111,16 +111,16 @@ function pidCheck($fname, $lname, $connect)
 }
 
 if (isset($_POST['pidcheck'])) {
-    $fname = antiCheat($_POST['fname']);
-    $lname = antiCheat($_POST['lname']);
+    $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
+    $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     if (checkFL($fname, $lname)) {
         pidCheck($fname, $lname, $connect);
     }
 }
 
 if (isset($_POST['add'])) {
-    $fname = antiCheat($_POST['_fname']);
-    $lname = antiCheat($_POST['_lname']);
+    $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_fname']));
+    $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_lname']));
     if (checkFL($fname, $lname)) {
         addUser($fname, $lname, $connect);
     }
