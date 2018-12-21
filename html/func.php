@@ -20,7 +20,7 @@ if (isset($_POST['add'])) {
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_lname']));
     if (empty($fname) || empty($lname)) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка.</p>";
-    } else if (iconv_strlen($fname) > 100 || iconv_strlen($lname) > 100) {
+    } else if (iconv_strlen($fname) > 50 || iconv_strlen($lname) > 50) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Превышено максимальное количество символов.</p>";
     } else if (!preg_match("/^[А-ЯЁа-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁа-яё]+$/u", $lname)) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод. Допускаются только русские буквы.</p>";
@@ -49,7 +49,7 @@ function pidCheck($fname, $lname, $connect) {
         echo 'ПИДАРАС</b></p>
           <form method="post">
             <input type="hidden" name="id" value="'.$row['ID'].'">
-            <input type="submit" name="del" value="Удалить пользователя" >
+            <input type="submit" name="del" value="Удалить из базы" >
           </form></div>
         ';
     }
@@ -60,7 +60,7 @@ if (isset($_POST['pidcheck'])) {
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     if (empty($fname) || empty($lname)) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Пустая строка.</p>";
-    } else if (iconv_strlen($fname) > 100 || iconv_strlen($lname) > 100) {
+    } else if (iconv_strlen($fname) > 50 || iconv_strlen($lname) > 50) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Превышено максимальное количество символов.</p>";
     } else if (!preg_match("/^[А-ЯЁа-яё]+$/u", $fname) || !preg_match("/^[А-ЯЁа-яё]+$/u", $lname)) {
         echo "<p style='color: darkred; font-size: 18px;'>Ошибка: Недопустимый ввод. Допускаются только русские буквы.</p>";
