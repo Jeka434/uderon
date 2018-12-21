@@ -47,7 +47,7 @@ function addUser($fname, $lname, $connect) {
 if (isset($_POST['add'])) {
   $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_fname']));
   $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_lname']));
-  if (checkstr($fname) && checkstr($lname) {
+  if (checkstr($fname) && checkstr($lname)) {
     addUser($fname, $lname, $connect);
   }
 }
