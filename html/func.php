@@ -13,11 +13,6 @@ $connect->query("SET NAMES 'utf8'");
 $sysMessages = "OK";
 $logType = "finelog";
 
-function antiCheat($str)
-{
-    return htmlspecialchars(mysqli_escape_string($connect, $str));
-}
-
 function setLog(bool $value = true)
 {
     if ($value) {
@@ -58,7 +53,7 @@ function addUser($fname, $lname, $connect)
                              FROM piddb.pidwart AS pid
                              GROUP BY pid.FirstName, pid.LastName
                              HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
-    if (!$user || ($row = $user->fetch_assoc()) === false) {
+    if (!$user || ($row = $user->fetch_assoc()) == false) {
         $add = $connect->query("INSERT INTO piddb.pidwart (FirstName, LastName) VALUES  ('$fname', '$lname')");
         if ($add) {
             $GLOBALS['sysMessages'] = "Пользователь добавлен.";
@@ -86,7 +81,7 @@ function pidCheck($fname, $lname, $connect)
             </div>
             <div class='urow'>
               <div class='ulabel'>Ориентация:</div>";
-    if (!$user || ($row = $user->fetch_assoc()) === false) {
+    if (!$user || ($row = $user->fetch_assoc()) == false) {
         echo "<div class='ulabeled'>НЕИЗВЕСТНО</div>
             </div>
             <div class='button'>
