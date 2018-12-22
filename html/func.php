@@ -28,7 +28,7 @@ function checkName(string $name, string $regx = '/.+/')
         $GLOBALS['sysMessages'] = ERR_EMPTY_STR;
     } elseif (iconv_strlen($name) > NAME_MAX_LEN) {
         $GLOBALS['sysMessages'] = ERR_MAX_LEN;
-    } elseif (!preg_match('/^[А-ЯЁа-яё]+$/u', $name)) {
+    } elseif (!preg_match('/^[А-ЯЁа-яё -]+$/u', $name)) {
         $GLOBALS['sysMessages'] = ERR_NOT_RUS;
     } elseif (!preg_match($regx, $name)) {
         $GLOBALS['sysMessages'] = ERR_CASE;
