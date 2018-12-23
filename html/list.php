@@ -46,7 +46,7 @@ while (($row = $users->fetch_assoc()) != FALSE) {
           <div class='urow'>
             <div class='ulabel'>Добавлен:</div>
             <div class='ulabeled'><?= $row['time'] == '2012-12-21 00:00:00' ? 'НЕИЗВЕСТНО' : $row['time']; ?>
-              <form style='float: right; margin-right: 30%;' action='/' method='post'>
+              <form style='float: right; margin-right: 30%;' method='post'>
                 <input type='hidden' name='id' value='<?= $row['ID']; ?>'>
                 <input type='submit' name='del' value='Удалить из базы'>
               </form>
