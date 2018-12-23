@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Список - Uderon</title>
-    <link rel="stylesheet" type="text/css" href="styles/teststyle.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/mainstyle.css?v=1.1" />
   </head>
   <body>
 <?php
@@ -40,7 +40,7 @@ while (($row = $users->fetch_assoc()) != FALSE) {
           </div>
           <div class='urow'>
             <div class='ulabel'>Добавлен:</div>
-            <div class='ulabeled'><?= $row['time']; ?></div>
+            <div class='ulabeled'><?= $row['time'] == '2012-12-21 00:00:00' ? 'НЕИЗВЕСТНО' : $row['time']; ?></div>
           </div>
           <div class='button'>
             <form action='/' method='post'>

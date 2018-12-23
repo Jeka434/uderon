@@ -42,6 +42,7 @@ a:active {
 .head {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 24px;
 }
 
 /* Форма для проверки */
@@ -80,27 +81,31 @@ a:active {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 25px;
-  padding: 10px;
   padding-top: 15px;
+  padding-bottom: 15px;
   border-top: 3px double #ccc;
   overflow: hidden;
 }
 
 .urow {
-  height: 1;
-  line-height: 150%;
+  height: 24px;
+  width: 100%;
 }
 
 .ulabel {
   float: left;
-  width: 100px;
+  width: 20%;
 }
 
 .ulabeled {
+  width: auto;
   font-weight: bold;
 }
 
 .button {
-  margin-top: 17px;
+  margin-top: 10px;
+}
+
+.right_col {
+  margin-left: 10%;
 }
