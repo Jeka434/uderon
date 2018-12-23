@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>База пидарков - Uderon</title>
-    <link rel="icon" type="image/png" href="img/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="css/mainstyle.css" />
+    <link rel="stylesheet" type="text/css" href="styles/mainstyle.css" />
   </head>
   <body>
     <div class="mainBody">

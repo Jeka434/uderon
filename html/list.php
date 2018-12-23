@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8">
     <title>Список - Uderon</title>
-    <link rel="icon" type="image/png" href="img/favicon.ico" />
     <style type="text/css">
       .prow {
         padding: 2px;
