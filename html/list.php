@@ -10,10 +10,10 @@
 <?php
 if (!isset($_POST['access']) || !($_POST['password'] === 'pidor')) {
 ?>
-      <h2>
+      <h2 style="font-size: 16px;">
         <form method="post">
-          <label>Пароль: <input type="text" name="password"></label>
-          <input type="submit" name="access" value="Проверить">
+          <label>Пароль: <input type="password" name="password"></label>
+          <input type="submit" name="access" value="Войти">
         </form>
       </h2>
 <?php
