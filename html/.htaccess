@@ -1,2 +1,5 @@
 Options -Indexes
 DirectoryIndex index.php index.html
+ErrorDocument 403 /errors/error.php?403
+ErrorDocument 404 /errors/error.php?404
+ErrorDocument 500 /errors/error.php?500
