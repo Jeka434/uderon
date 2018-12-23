@@ -6,7 +6,19 @@
     <link rel="stylesheet" type="text/css" href="/styles/mainstyle.css?v=1.2" />
   </head>
   <body>
+    <div class='mainBody'>
 <?php
+if (!isset($_POST['access']) || !($_POST['password'] === 'pidor')) {
+?>
+      <h2>
+        <form method="post">
+          <label>Пароль: <input type="text" name="password"></label>
+          <input type="submit" name="access" value="Проверить">
+        </form>
+      </h2>
+<?php
+    exit();
+}
 $connect = new mysqli("localhost", "pidor", "password", "piddb");
 $connect->query("SET NAMES 'utf8'");
 
@@ -17,7 +29,6 @@ if (isset($_POST['del'])) {
 
 $users = $connect->query("SELECT * FROM pidwart ORDER BY ID");
 ?>
-    <div class='mainBody'>
       <div class='head'>
         <h2>Всего пидарков в базе: <b><?= $users->num_rows; ?></b></h2>
       </div>
