@@ -2,8 +2,8 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="img/favicon.ico" />
     <title>Список - Uderon</title>
+    <link rel="icon" type="image/png" href="img/favicon.ico" />
     <style type="text/css">
       .prow {
         padding: 2px;
