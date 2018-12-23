@@ -3,33 +3,57 @@
   <head>
     <meta charset="UTF-8">
     <title>Список - Uderon</title>
-    <style type="text/css">
-      .prow {
-        padding: 2px;
-        font-size: 18px;
-        border: 1px solid #ccc;
-      }
-      .s {
-        margin-left: 30px;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles/teststyle.css" />
   </head>
   <body>
-    <?php
-    $connect = new mysqli("localhost", "pidor", "password", "piddb");
-    $connect->query("SET NAMES 'utf8'");
+<?php
+$connect = new mysqli("localhost", "pidor", "password", "piddb");
+$connect->query("SET NAMES 'utf8'");
 
-    $users = $connect->query("SELECT * FROM pidwart ORDER BY ID");
-    echo "<p>Всего пользователей в базе: <b>", $users->num_rows, "</b></p>";
-    $num = 0;
-    while (($row = $users->fetch_assoc()) != FALSE) {
-        $num++;
-        echo "<div class='prow'>
-                <span class='f'>", $num, ") ", $row['FirstName'], " ", $row['LastName'], "</span>
-                <span class='s'>", $row['time'] ?? "NONE", "</span>
-              </div>";
-    }
-    $connect->close();
-    ?>
+$users = $connect->query("SELECT * FROM pidwart ORDER BY ID");
+?>
+    <div class='mainBody'>
+      <div class='head'>
+        <h2>Всего пидарков в базе: <b><?= $users->num_rows; ?></b></h2>
+      </div>
+<?php
+$num = 0;
+while (($row = $users->fetch_assoc()) != FALSE) {
+  $num++;
+?>
+      <div class='userInf'>
+        <div class='urow'>
+          <div class='ulabel' style='font-size: 20px;'><?= $num; ?></div>
+        </div>
+        <div class='right_col'>
+          <div class='urow'>
+            <div class='ulabel'>ID:</div>
+            <div class='ulabeled'><?= $row['ID']; ?></div>
+          </div>
+          <div class='urow'>
+            <div class='ulabel'>Имя:</div>
+            <div class='ulabeled'><?= $row['FirstName']; ?></div>
+          </div>
+          <div class='urow'>
+            <div class='ulabel'>Фамилия:</div>
+            <div class='ulabeled'><?= $row['LastName']; ?></div>
+          </div>
+          <div class='urow'>
+            <div class='ulabel'>Добавлен:</div>
+            <div class='ulabeled'><?= $row['time']; ?></div>
+          </div>
+          <div class='button'>
+            <form action='/' method='post'>
+              <input type='hidden' name='id' value='<?= $row['ID']; ?>'>
+              <input type='submit' name='add' value='Удалить из базы'>
+            </form>
+          </div>
+        </div>
+      </div>
+<?php
+}
+$connect->close();
+?>
+    </div>
   </body>
 </html>
