@@ -75,7 +75,6 @@ if (isset($_POST['pidcheck'])) {
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     if (checkFL($fname, $lname)) {
         pid_check($fname, $lname, $connect);
-    }
 ?>
           <div class='user_inf'>
             <div class='urow'>
@@ -92,18 +91,19 @@ if (isset($_POST['pidcheck'])) {
             </div>
             <div class='button'>
               <form method='post'>
-<?php if($found) { ?>
+<?php   if($found) { ?>
                 <input type='hidden' name='id' value='<?= $row['ID'] ?>'>
                 <input type='submit' name='del' value='Удалить из базы'>
-<?php } else { ?>
+<?php   } else { ?>
                 <input type='hidden' name='_fname' value='<?= $fname ?>'>
                 <input type='hidden' name='_lname' value='<?= $lname ?>'>
                 <input type='submit' name='add' value='Добавить в базу'>
-<?php } ?>
+<?php   } ?>
               </form>
             </div>
           </div>
 <?php
+    }
 }
 
 if (isset($_POST['add'])) {
