@@ -1,5 +1,4 @@
 <?php
-include_once 'config.php';
 
 if (!isset($_POST['access']) || !($_POST['password'] === 'pidor')) {
     header("Location: http://uderon.com/login.php");

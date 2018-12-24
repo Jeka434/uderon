@@ -1,7 +1,5 @@
 <?php
 
-include_once 'config.php';
-
 define('NAME_MAX_LEN', 37);
 define('ERR_EMPTY_STR', "Ошибка: Пустая строка.");
 define('ERR_MAX_LEN',   "Ошибка: Превышено максимальное количество символов.");
