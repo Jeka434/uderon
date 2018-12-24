@@ -21,7 +21,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 /* Тело */
-.mainBody {
+#content {
   width: 70%;
   min-height: 100%;
   margin-left: auto;
@@ -31,14 +31,14 @@ a:link, a:visited, a:hover, a:active {
 }
 
 /* Заголовок */
-.head {
+#header {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 24px;
 }
 
 /* Форма для проверки */
-.mainForm {
+.main_form {
   margin-left: 10px;
   margin-top: 30px;
   text-align: center;
@@ -69,7 +69,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 /* Данные пользователя */
-.userInf {
+.user_inf {
   width: 60%;
   min-width: 600px;
   margin-left: auto;
