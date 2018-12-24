@@ -1,0 +1,13 @@
+{% extends "base.tmpl" %}
+
+{% block title %}Вход{% endblock %}
+{% block content %}
+      <div id="header">
+        <h2 style="font-size: 16px;">
+          <form method="post">
+            <label>Пароль: <input type="password" name="password"></label>
+            <input type="submit" name="access" value="Войти">
+          </form>
+        </h2>
+      </div>
+{% endblock %}

@@ -1,7 +1,2 @@
 test*
-vendor
-composer*
-twig.php
-templates
 compilation_cache
-build_config.php
