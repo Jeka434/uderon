@@ -5,7 +5,7 @@ define('FILES_TO_BUILD', array(
     'list.php' => 'html/list.php',
     'login.html' => 'html/login.html',
 ));
-define('CSS_VERSION', '1.3');
+define('CSS_VERSION', '1.4');
 define('TEMPLATE_PARAMS', array(
     'css_version' => CSS_VERSION,
 ));

@@ -5,7 +5,7 @@
     <meta charset='UTF-8'>
     <meta name="description" content="База данных пидарков">
     <title>Список — Uderon</title>
-    <link rel='stylesheet' type='text/css' href='/styles/style.css?v=1.3' />
+    <link rel='stylesheet' type='text/css' href='/styles/style.css?v=1.4' />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
   </head>
   <body>
