@@ -1,12 +1,15 @@
 <?php
-define('FILES_TO_BUILD', array(
-    'error.php' => 'html/error.php',
-    'index.php' => 'html/index.php',
-    'list.php' => 'html/list.php',
-    'login.html' => 'html/login.html',
+define('UDERON_CONSTANTS', array(
+    'FILES_TO_BUILD' => array(
+        'html' => array(
+            'error.php',
+            'index.php',
+            'list.php',
+            'login.html'
+        )
+    ),
+    'TEMPLATE_PARAMS' => array(
+        'css_version' => '1.4'
+    ),
+    'BUILD_DIR' => 'uderon.com'
 ));
-define('CSS_VERSION', '1.4');
-define('TEMPLATE_PARAMS', array(
-    'css_version' => CSS_VERSION,
-));
-define('BUILD_DIR', 'uderon.com/');
