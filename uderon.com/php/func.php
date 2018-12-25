@@ -72,7 +72,7 @@ if (isset($_POST['pidcheck'])) {
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     if (checkFL($fname, $lname)) {
-        pid_check($fname, $lname, $connect);
+        $found = pid_check($fname, $lname, $connect);
 ?>
           <div class='user_inf'>
             <div class='urow'>
