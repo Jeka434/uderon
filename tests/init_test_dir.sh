@@ -1,4 +1,4 @@
 #!/bin/bash
-for i in ../uderon.com/html/*; do
+for i in $1/html/*; do
     ln -s $i `echo $i | cut -d "/" -f 4`;
 done
