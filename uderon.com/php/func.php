@@ -65,7 +65,12 @@ function pid_check($fname, $lname, $connect)
                              FROM piddb.pidwart AS pid
                              GROUP BY pid.FirstName, pid.LastName
                              HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
-    return ($user && ($row = $user->fetch_assoc()) == true) ? $row : false;
+    $row = $user->fetch_assoc();
+    if ($user && $row == true) {
+        return $row['ID'];
+    } else {
+        return false;
+    }
 }
 
 if (isset($_POST['pidcheck'])) {
@@ -90,7 +95,7 @@ if (isset($_POST['pidcheck'])) {
             <div class='button'>
               <form method='post'>
 <?php   if($found) { ?>
-                <input type='hidden' name='id' value='<?= $row['ID'] ?>'>
+                <input type='hidden' name='id' value='<?= $found ?>'>
                 <input type='submit' name='del' value='Удалить из базы'>
 <?php   } else { ?>
                 <input type='hidden' name='_fname' value='<?= $fname ?>'>
