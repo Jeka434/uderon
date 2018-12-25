@@ -1,4 +1,5 @@
 <?php
+set_include_path(get_include_path() . PATH_SEPARATOR . 'compilation_scripts');
 require_once 'build_config.php';
 require_once 'vendor/autoload.php';
 
