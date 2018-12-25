@@ -1,2 +1,4 @@
-tests/
+tests/*
+!tests/clean_test_dir.sh
+!tests/init_test_dir.sh
 compilation_cache
