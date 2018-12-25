@@ -1,0 +1,11 @@
+#YAML for construction
+UDERON_CONSTANTS:
+    FILES_TO_BUILD:
+        html:
+            - error.php
+            - index.php
+            - list.php
+            - login.html
+    TEMPLATE_PARAMS:
+        css_version: '1.4'
+    BUILD_DIR: uderon.com
