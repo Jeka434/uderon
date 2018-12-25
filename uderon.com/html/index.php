@@ -17,7 +17,7 @@
           <input type="submit" name="pidcheck" value="Проверить">
         </form>
       </div>
-<?= include 'func.php'; ?>
+<?php include 'func.php'; ?>
     </div>
   </body>
 </html>
