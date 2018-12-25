@@ -77,7 +77,7 @@ if (isset($_POST['pidcheck'])) {
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     if (checkFL($fname, $lname)) {
-        $found = pid_check($fname, $lname, $connect);
+        $check_id = pid_check($fname, $lname, $connect);
 ?>
           <div class='user_inf'>
             <div class='urow'>
@@ -90,17 +90,17 @@ if (isset($_POST['pidcheck'])) {
             </div>
             <div class='urow'>
               <div class='ulabel'>Ориентация:</div>
-              <div class='ulabeled'><?= $found ? 'ПИДАРАС' : 'НЕИЗВЕСТНО'; ?></div>
+              <div class='ulabeled'><?= $check_id === false ? 'НЕИЗВЕСТНО' : 'ПИДАРАС'; ?></div>
             </div>
             <div class='button'>
               <form method='post'>
-<?php   if($found) { ?>
-                <input type='hidden' name='id' value='<?= $found ?>'>
-                <input type='submit' name='del' value='Удалить из базы'>
-<?php   } else { ?>
+<?php   if($check_id === false) { ?>
                 <input type='hidden' name='_fname' value='<?= $fname ?>'>
                 <input type='hidden' name='_lname' value='<?= $lname ?>'>
                 <input type='submit' name='add' value='Добавить в базу'>
+<?php   } else { ?>
+                <input type='hidden' name='id' value='<?= $check_id ?>'>
+                <input type='submit' name='del' value='Удалить из базы'>
 <?php   } ?>
               </form>
             </div>
