@@ -65,7 +65,7 @@ function pid_check($fname, $lname, $connect)
                              FROM piddb.pidwart AS pid
                              GROUP BY pid.FirstName, pid.LastName
                              HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
-    return $user && ($row = $user->fetch_assoc()) == true;
+    return ($user && ($row = $user->fetch_assoc()) == true) ? $row : false;
 }
 
 if (isset($_POST['pidcheck'])) {
