@@ -127,7 +127,7 @@ if (isset($_POST['add'])) {
 }
 
 if (!($sys_messages === "OK")) {
-    echo "<div class='", $err ? "finelog" : "errlog", "'>", $sys_messages, "</div>" ;
+    echo "<div class='", $err ? "errlog" : "finelog", "'>", $sys_messages, "</div>" ;
 }
 
 $connect->close();
