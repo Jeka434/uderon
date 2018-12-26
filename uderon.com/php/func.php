@@ -46,7 +46,7 @@ function add_user($fname, $lname, $connect)
                                  HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
         if (!$user || ($row = $user->fetch_assoc()) == false) {
             $add = $connect->query("INSERT INTO piddb.pidwart (FirstName, LastName) VALUES  ('$fname', '$lname')");
-            log_assert($add, "Ошибка добавления", "Пользователь добавлен.");
+            log_assert(!$add, "Ошибка добавления", "Пользователь добавлен.");
         }
     }
 }
@@ -67,7 +67,7 @@ function pid_check($fname, $lname, $connect)
 function del_user($id, $connect)
 {
     $del = $connect->query("DELETE FROM pidwart WHERE ID = $id");
-    log_assert($del, "Ошибка удаления.", "Пользователь удален.");
+    log_assert(!$del, "Ошибка удаления.", "Пользователь удален.");
 }
 
 if (isset($_POST['pidcheck'])) {
