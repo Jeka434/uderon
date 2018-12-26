@@ -5,7 +5,7 @@ UDERON_CONSTANTS:
             - error.php
             - index.php
             - list.php
-            - login.html
+            - login.php
             - slist.php
     TEMPLATE_PARAMS:
         css_version: 1.41
