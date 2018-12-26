@@ -1,4 +1,4 @@
-<?php $GLOBALS['ret_name'] = 'list.php'; include_once 'liststart.php'; ?>
+<?php include_once 'liststart.php'; ?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>
