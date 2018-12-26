@@ -13,7 +13,7 @@ def main():
             data = re.sub(r'\]\}', r'\n)', data)
             data = re.sub(r', ', r',\n', data)
             data = re.sub(r'\}', r'', data)
-            data = re.sub(r'\)\n\)', r'))', data)
+            #data = re.sub(r'\)\n\)', r'))', data)
             data = re.sub(r'^\n', r'', data)
             data = re.sub(r': \(', r' => array(', data)
             data = re.sub(r':', r' =>', data)
