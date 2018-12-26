@@ -13,7 +13,7 @@
   </div>
   <div class='button'>
     <form method='post'>
-      <input type='hidden' name='id' value='<?= $check_id ?>'>
+      <input type='hidden' name='id' value='<?= $row['ID'] ?>'>
       <input type='submit' name='del' value='Удалить из базы'>
     </form>
   </div>
