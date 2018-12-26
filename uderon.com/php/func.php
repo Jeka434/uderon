@@ -89,9 +89,7 @@ if (isset($_POST['pidcheck'])) {
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
     pid_check($fname, $lname, $connect);
-}
-
-if (isset($_POST['add'])) {
+} elseif (isset($_POST['add'])) {
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_lname']));
     add_user($fname, $lname, $connect);
