@@ -3,15 +3,15 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'compilation_scripts');
 require_once 'build_config.php';
 require_once 'vendor/autoload.php';
 
-function render_recoursevly($dir, string $dirname, $filename, $twig)
+function render_recoursevly($dir, string $dirname, $syn, $twig)
 {
     if (is_array($dir)) {
         foreach ($dir as $key => $value) {
-            render_recoursevly($value, $dirname.'/'.(is_array($value) ? $key : $value), $value, $twig);
+            render_recoursevly($value, $dirname.'/'.(is_array($value) ? $key : ""), $key, $twig);
         }
     } else {
-        $template = $twig->load($filename.'.tmpl');
-        file_put_contents($dirname.$value, $template->render(UDERON_CONSTANTS['TEMPLATE_PARAMS']));
+        $template = $twig->load((is_string($syn) ? $syn : $dir).".tmpl");
+        file_put_contents($dirname.$dir, $template->render(UDERON_CONSTANTS['TEMPLATE_PARAMS']));
     }
 }
 

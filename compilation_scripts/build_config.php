@@ -2,15 +2,16 @@
 define('UDERON_CONSTANTS', array(
     'FILES_TO_BUILD' => array(
         'html' => array(
-            'error.php',
+            'error' => array(
+                'error.php' => 'index.php',
+            ),
             'index.php',
             'list.php',
             'login.php',
-            'slist.php'
-        )
-    ),
+            'slist.php',
+    )),
     'TEMPLATE_PARAMS' => array(
-        'css_version' => 1.41
+        'css_version' => 1.41,
     ),
-    'BUILD_DIR' => 'uderon.com'
+    'BUILD_DIR' => 'uderon.com',
 ));
