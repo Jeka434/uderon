@@ -7,5 +7,5 @@ UDERON_CONSTANTS:
             - list.php
             - login.html
     TEMPLATE_PARAMS:
-        css_version: '1.4'
+        css_version: 1.40
     BUILD_DIR: uderon.com
