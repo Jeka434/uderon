@@ -22,10 +22,10 @@ clean:
 	rm -rf $(SCRIPT_DIR)/build_config.php
 
 test:
-	$(TEST_DIR)/init_test_dir.sh $(UDERON_DIR)
+	for i in $(UDERON_DIR)/html/*; do ln -s $$i $(TEST_DIR)/`echo $$i | cut -d "/" -f 3`; done
 
 untest:
-	$(TEST_DIR)/clean_test_dir.sh $(TEST_DIR)
+	for i in $(TEST_DIR)/*; do ls -l $$i | grep "^l" && rm $$i; done
 
 CSSVOLD=$(shell grep css_version config.yml | cut -d ":" -f2 | cut -d " " -f2)
 CSSVNEW=$(shell echo "$(CSSVOLD) $(VCSS_DIFF) + p" | dc)
