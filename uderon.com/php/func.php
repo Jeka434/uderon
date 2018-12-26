@@ -17,7 +17,6 @@ define('ADMINS', array(
     array('Евгений', 'Васин'),
 ));
 
-include_once 'sqlconnect.php';
 $sys_messages = "";
 
 function log_assert($value, $errmsg = "", $finemsg = "")
@@ -85,22 +84,21 @@ function del_user($id, $connect)
     log_assert($del, ERR_DEL_USER, MSG_DEL_USER);
 }
 
-if (isset($_POST['fname']) && isset($_POST['lname'])) {
-    $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
-    $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
-} elseif (isset($_POST['id'])) {
-    $id = (int) $_POST['id'];
+function main()
+{
+    require_once 'sqlconnect.php';
+    $fname = isset($_POST['fname']) ? htmlspecialchars(mysqli_escape_string($connect, $_POST['fname'])) : "";
+    $lname = isset($_POST['lname']) ? htmlspecialchars(mysqli_escape_string($connect, $_POST['lname'])) : "";
+    $id = isset($_POST['id']) ? (int) $_POST['id'] : 0;
+    if (isset($_POST['pidcheck'])) {
+        pid_check($fname, $lname, $connect);
+    } elseif (isset($_POST['add'])) {
+        add_user($fname, $lname, $connect);
+    } elseif (isset($_POST['del'])) {
+        del_user($id, $connect);
+    } elseif (isset($_POST['addmin'])) {
+        log_assert(false, ERR_ADDMIN);
+    }
+    echo $sys_messages;
+    $connect->close();
 }
-if (isset($_POST['pidcheck'])) {
-    pid_check($fname, $lname, $connect);
-} elseif (isset($_POST['add'])) {
-    add_user($fname, $lname, $connect);
-} elseif (isset($_POST['del'])) {
-    del_user($id, $connect);
-} elseif (isset($_POST['addmin'])) {
-    log_assert(false, ERR_ADDMIN);
-}
-
-echo $sys_messages;
-
-$connect->close();

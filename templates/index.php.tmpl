@@ -1,5 +1,8 @@
 {% extends "base.tmpl" %}
 
+{% block top %}
+<?php include_once 'func.php' ?>
+{% endblock %}
 {% block title %}База пидарков{% endblock %}
 {% block content %}
       <div id="header">
@@ -10,5 +13,5 @@
           <input type="submit" name="pidcheck" value="Проверить">
         </form>
       </div>
-<?php include 'func.php'; ?>
+<?php main(); ?>
 {% endblock %}

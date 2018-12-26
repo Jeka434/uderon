@@ -1,3 +1,4 @@
+<?php include_once 'func.php' ?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -17,7 +18,7 @@
           <input type="submit" name="pidcheck" value="Проверить">
         </form>
       </div>
-<?php include 'func.php'; ?>
+<?php main(); ?>
     </div>
   </body>
 </html>
