@@ -13,8 +13,8 @@
   </div>
   <div class='button'>
     <form method='post'>
-      <input type='hidden' name='_fname' value='<?= $fname ?>'>
-      <input type='hidden' name='_lname' value='<?= $lname ?>'>
+      <input type='hidden' name='fname' value='<?= $fname ?>'>
+      <input type='hidden' name='lname' value='<?= $lname ?>'>
       <input type='submit' name='add' value='Добавить в базу'>
     </form>
   </div>
