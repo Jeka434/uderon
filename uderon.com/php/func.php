@@ -44,7 +44,7 @@ function checkFL(string $fname, string $lname)
 
 function check_admin(string $fname, string $lname)
 {
-    if ($fname === "Евгений" && ($lname === "Ростовский" || $lname === "Васин")) {
+    if (in_array(array($fname, $lname), ADMINS)) {
         include_once 'pidcheck/admin.php';
         return true;
     }
