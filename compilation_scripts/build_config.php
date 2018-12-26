@@ -9,7 +9,7 @@ define('UDERON_CONSTANTS', array(
         )
     ),
     'TEMPLATE_PARAMS' => array(
-        'css_version' => 1.4
+        'css_version' => 1.41
     ),
     'BUILD_DIR' => 'uderon.com'
 ));
