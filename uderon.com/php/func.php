@@ -82,7 +82,7 @@ if (isset($_POST['add'])) {
     add_user($fname, $lname, $connect);
 } elseif (isset($_POST['del'])) {
     $id = (int)$_POST['id'];
-    del_user($id);
+    del_user($id, $connect);
 }
 
 if (!($sys_messages === "")) {
