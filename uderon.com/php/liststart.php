@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_POST['access']) || !($_POST['password'] === 'pidor')) {
-    header("Location: http://uderon.com/login.php?ret_name=".$GLOBALS[ret_name]);
+    header("Location: http://uderon.com/login.php?ret_name=".$_SERVER['PHP_SELF']);
 }
 
 include_once 'sqlconnect.php';

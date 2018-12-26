@@ -1,13 +1,13 @@
 {% extends "base.tmpl" %}
 
 {% block top %}
-<?php include_once 'loginstart.php' ?>
+<?php include_once 'loginstart.php'; ?>
 {% endblock %}
 {% block title %}Вход{% endblock %}
 {% block content %}
       <div id="header">
         <h2 style="font-size: 16px;">
-          <form action="/<?= $ret_name; ?>" method="post">
+          <form action="<?= $ret_name; ?>" method="post">
             <label>Пароль: <input type="password" name="password"></label>
             <input type="submit" name="access" value="Войти">
           </form>
