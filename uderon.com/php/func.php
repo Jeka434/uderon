@@ -9,104 +9,65 @@ define('FNAME_REGX', '/^([А-ЯЁ][а-яё]+)$/u');
 define('LNAME_REGX', '/^([А-ЯЁ][а-яё]+|[ЕОЮ])(([ -][А-ЯЁ][а-яё]+)| [ЕОЮ])*$/u');
 
 include_once 'sqlconnect.php';
-$sys_messages = "OK";
+$sys_messages = "";
 $err = false;
 
-function set_err(bool $value = true)
+function log_assert($value, $errmsg = "", $finemsg = "")
 {
-    $GLOBALS['err'] = $value;
+    if ($value) {
+        $GLOBALS['sys_messages'] = ($errmsg === "" ? $GLOBALS['sys_messages'] : $errmsg);
+        $GLOBALS['err'] = true;
+    } else {
+        $GLOBALS['sys_messages'] = ($finemsg === "" ? $GLOBALS['sys_messages'] : $finemsg);
+        $GLOBALS['err'] = false;
+    }
+    return $GLOBALS['err'];
 }
 
 function check_name(string $name, string $regx = '/.+/')
 {
-    if (empty($name)) {
-        $GLOBALS['sys_messages'] = ERR_EMPTY_STR;
-    } elseif (iconv_strlen($name) > NAME_MAX_LEN) {
-        $GLOBALS['sys_messages'] = ERR_MAX_LEN;
-    } elseif (!preg_match('/^[А-ЯЁа-яё -]+$/u', $name)) {
-        $GLOBALS['sys_messages'] = ERR_NOT_RUS;
-    } elseif (!preg_match($regx, $name)) {
-        $GLOBALS['sys_messages'] = ERR_CASE;
-    } else {
-        return true;
-    }
-    return false;
+    return !(log_assert(empty($name), ERR_EMPTY_STR)
+          || log_assert(iconv_strlen($name) > NAME_MAX_LEN, ERR_MAX_LEN)
+          || log_assert(!preg_match('/^[А-ЯЁа-яё -]+$/u', $name), ERR_NOT_RUS)
+          || log_assert(!preg_match($regx, $name), ERR_CASE));
 }
 
 function checkFL(string $fname, string $lname)
 {
-    if (check_name($fname, FNAME_REGX) && check_name($lname, LNAME_REGX)) {
-        return true;
-    }
-    set_err();
-    return false;
+    return check_name($fname, FNAME_REGX) && check_name($lname, LNAME_REGX);
 }
 
 function add_user($fname, $lname, $connect)
 {
-    $user = $connect->query("SELECT *
-                             FROM piddb.pidwart AS pid
-                             GROUP BY pid.FirstName, pid.LastName
-                             HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
-    if (!$user || ($row = $user->fetch_assoc()) == false) {
-        $add = $connect->query("INSERT INTO piddb.pidwart (FirstName, LastName) VALUES  ('$fname', '$lname')");
-        if ($add) {
-            $GLOBALS['sys_messages'] = "Пользователь добавлен.";
-        } else {
-            set_err();
-            $GLOBALS['sys_messages'] = "Ошибка добавления";
+    if (checkFL($fname, $lname)) {
+        $user = $connect->query("SELECT *
+                                 FROM piddb.pidwart AS pid
+                                 GROUP BY pid.FirstName, pid.LastName
+                                 HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
+        if (!$user || ($row = $user->fetch_assoc()) == false) {
+            $add = $connect->query("INSERT INTO piddb.pidwart (FirstName, LastName) VALUES  ('$fname', '$lname')");
+            log_assert($add, "Ошибка добавления", "Пользователь добавлен.");
         }
     }
 }
 
 function pid_check($fname, $lname, $connect)
 {
-    $user = $connect->query("SELECT *
-                             FROM piddb.pidwart AS pid
-                             GROUP BY pid.FirstName, pid.LastName
-                             HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
-    $row = $user->fetch_assoc();
-    if ($user && $row == true) {
-        return $row['ID'];
-    } else {
-        return false;
+    if (checkFL($fname, $lname)) {
+        $user = $connect->query("SELECT *
+                                 FROM piddb.pidwart AS pid
+                                 GROUP BY pid.FirstName, pid.LastName
+                                 HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
+        $row = $user->fetch_assoc();
+        $check_id = $user && $row == true ? $row['ID'] : false;
+        include_once ($check_id === false ? "notfound.php" : "found.php");
     }
 }
 
 if (isset($_POST['pidcheck'])) {
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['lname']));
-    if (checkFL($fname, $lname)) {
-        $check_id = pid_check($fname, $lname, $connect);
-?>
-          <div class='user_inf'>
-            <div class='urow'>
-              <div class='ulabel'>Имя:</div>
-              <div class='ulabeled'><?= $fname ?></div>
-            </div>
-            <div class='urow'>
-              <div class='ulabel'>Фамилия:</div>
-              <div class='ulabeled'><?= $lname ?></div>
-            </div>
-            <div class='urow'>
-              <div class='ulabel'>Ориентация:</div>
-              <div class='ulabeled'><?= $check_id === false ? 'НЕИЗВЕСТНО' : 'ПИДАРАС'; ?></div>
-            </div>
-            <div class='button'>
-              <form method='post'>
-<?php   if($check_id === false) { ?>
-                <input type='hidden' name='_fname' value='<?= $fname ?>'>
-                <input type='hidden' name='_lname' value='<?= $lname ?>'>
-                <input type='submit' name='add' value='Добавить в базу'>
-<?php   } else { ?>
-                <input type='hidden' name='id' value='<?= $check_id ?>'>
-                <input type='submit' name='del' value='Удалить из базы'>
-<?php   } ?>
-              </form>
-            </div>
-          </div>
-<?php
-    }
+    pid_check($fname, $lname, $connect);
 }
 
 if (isset($_POST['add'])) {
@@ -126,7 +87,7 @@ if (isset($_POST['add'])) {
     }
 }
 
-if (!($sys_messages === "OK")) {
+if (!($sys_messages === "")) {
     echo "<div class='", $err ? "errlog" : "finelog", "'>", $sys_messages, "</div>" ;
 }
 
