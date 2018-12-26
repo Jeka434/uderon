@@ -9,7 +9,7 @@
   </div>
   <div class='urow'>
     <div class='ulabel'>Ориентация:</div>
-    <div class='ulabeled'>'НЕИЗВЕСТНО'</div>
+    <div class='ulabeled'>НЕИЗВЕСТНО</div>
   </div>
   <div class='button'>
     <form method='post'>
