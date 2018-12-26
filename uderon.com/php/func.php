@@ -79,7 +79,7 @@ function pid_check($fname, $lname, $connect)
 {
     if (checkFL($fname, $lname) && !check_admin($fname, $lname)) {
         $row = find_user($fname, $lname, $connect);
-        include_once ($row ? "pidcheck/notfound.php" : "pidcheck/found.php");
+        include_once ($row ? "pidcheck/found.php" : "pidcheck/notfound.php");
     }
 }
 
