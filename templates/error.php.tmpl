@@ -2,9 +2,9 @@
 {% block top %}
 <?php $err = in_array($_SERVER['QUERY_STRING'], array('403', '404', '500')) ? $_SERVER['QUERY_STRING'] : '404'; ?>
 {% endblock %}
-{% block title %}Ошибка <?= htmlspecialchars($_SERVER['QUERY_STRING']); ?>{% endblock %}
+{% block title %}Ошибка <?= htmlspecialchars($err); ?>{% endblock %}
 {% block content %}
       <div id="header">
-        <h2>Ошибка <?= htmlspecialchars($_SERVER['QUERY_STRING']); ?>. Похоже вы пидарок. <a href="/">Добавьте себя в базу</a></h2>
+        <h2>Ошибка <?= htmlspecialchars($err); ?>. Похоже вы пидарок. <a href="/">Добавьте себя в базу</a></h2>
       </div>
 {% endblock %}
