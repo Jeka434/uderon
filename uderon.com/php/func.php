@@ -60,8 +60,14 @@ function pid_check($fname, $lname, $connect)
                                  HAVING pid.FirstName='$fname' AND pid.LastName='$lname'");
         $row = $user->fetch_assoc();
         $check_id = $user && $row == true ? $row['ID'] : false;
-        include_once ($check_id === false ? "notfound.php" : "found.php");
+        include_once ($check_id === false ? "pidcheck/notfound.php" : "pidcheck/found.php");
     }
+}
+
+function del_user($id, $connect)
+{
+    $del = $connect->query("DELETE FROM pidwart WHERE ID = $id");
+    log_assert($del, "Ошибка удаления.", "Пользователь удален.");
 }
 
 if (isset($_POST['pidcheck'])) {
@@ -73,18 +79,10 @@ if (isset($_POST['pidcheck'])) {
 if (isset($_POST['add'])) {
     $fname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_fname']));
     $lname = htmlspecialchars(mysqli_escape_string($connect, $_POST['_lname']));
-    if (checkFL($fname, $lname)) {
-        add_user($fname, $lname, $connect);
-    }
+    add_user($fname, $lname, $connect);
 } elseif (isset($_POST['del'])) {
     $id = (int)$_POST['id'];
-    $del = $connect->query("DELETE FROM pidwart WHERE ID = $id");
-    if ($del) {
-        $GLOBALS['sys_messages'] = "Пользователь удален.";
-    } else {
-        $GLOBALS['sys_messages'] = "Ошибка удаления.";
-        set_err();
-    }
+    del_user($id);
 }
 
 if (!($sys_messages === "")) {
