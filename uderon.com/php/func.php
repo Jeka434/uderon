@@ -1,17 +1,17 @@
 <?php
 
-define('NAME_MAX_LEN', 37);
-define('ERR_ADDMIN', "Ошибка: Ваша мать – шалава.");
+define('NAME_MAX_LEN',  37);
+define('ERR_ADDMIN',    "Ошибка: Ваша мать – шалава.");
 define('ERR_EMPTY_STR', "Ошибка: Пустая строка.");
 define('ERR_MAX_LEN',   "Ошибка: Превышено максимальное количество символов.");
 define('ERR_NOT_RUS',   "Ошибка: Недопустимый ввод. Допускаются только русские буквы.");
 define('ERR_CASE',      "Ошибка: Недопустимый ввод. Имя и фамилия должны начинаться с большой буквы.");
-define('ERR_ADD_USER', "Ошибка добавления.");
-define('ERR_DEL_USER', "Ошибка удаления.");
-define('MSG_ADD_USER', "Пользователь добавлен.");
-define('MSG_DEL_USER', "Пользователь удален.");
-define('FNAME_REGX', '/^([А-ЯЁ][а-яё]+)$/u');
-define('LNAME_REGX', '/^([А-ЯЁ][а-яё]+|[ЕОЮ])(([ -][А-ЯЁ][а-яё]+)| [ЕОЮ])*$/u');
+define('ERR_ADD_USER',  "Ошибка добавления.");
+define('ERR_DEL_USER',  "Ошибка удаления.");
+define('MSG_ADD_USER',  "Пользователь добавлен.");
+define('MSG_DEL_USER',  "Пользователь удален.");
+define('FNAME_REGX',    '/^([А-ЯЁ][а-яё]+)$/u');
+define('LNAME_REGX',    '/^([А-ЯЁ][а-яё]+|[ЕОЮ])(([ -][А-ЯЁ][а-яё]+)| [ЕОЮ])*$/u');
 define('ADMINS', array(
     array('Евгений', 'Ростовский'),
     array('Евгений', 'Васин'),
@@ -27,6 +27,11 @@ function log_assert($value, $errmsg = "", $finemsg = "")
         $GLOBALS['sys_messages'] = ($errmsg === "" ? $GLOBALS['sys_messages'] : "<div class='errlog'>$errmsg</div>");
     }
     return (boolean) $value;
+}
+
+function log_print()
+{
+    echo $GLOBALS['sys_messages'];
 }
 
 function check_name(string $name, string $regx = '/.+/')
@@ -99,6 +104,6 @@ function main()
     } elseif (isset($_POST['addmin'])) {
         log_assert(false, ERR_ADDMIN);
     }
-    echo $sys_messages;
+    log_print();
     $connect->close();
 }
