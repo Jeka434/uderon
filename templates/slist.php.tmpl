@@ -1,0 +1,6 @@
+{% extends "list.php.tmpl" %}
+
+{% block title %}Простой список{% endblock %}
+{% block list %}
+      <p><?= $num; ?>) <?= $row['LastName']; ?> <?= $row['FirstName']; ?></p>
+{% endblock %}

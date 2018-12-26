@@ -6,14 +6,17 @@
 
 {% block title %}Список{% endblock %}
 {% block content %}
+{% block header %}
       <div id='header'>
         <h2>Всего пидарков в базе: <b><?= $users->num_rows; ?></b></h2>
       </div>
+{% endblock %}
 <?php
 $num = 0;
 while (($row = $users->fetch_assoc()) != false) {
     $num++;
 ?>
+{% block list %}
       <div class='user_inf'>
         <div class='urow'>
           <div class='ulabel' style='font-size: 20px;'><?= $num; ?></div>
@@ -43,6 +46,7 @@ while (($row = $users->fetch_assoc()) != false) {
           </div>
         </div>
       </div>
+{% endblock %}
 <?php
 }
 $connect->close();

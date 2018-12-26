@@ -5,7 +5,8 @@ define('UDERON_CONSTANTS', array(
             'error.php',
             'index.php',
             'list.php',
-            'login.html'
+            'login.html',
+            'slist.php'
         )
     ),
     'TEMPLATE_PARAMS' => array(

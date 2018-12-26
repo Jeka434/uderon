@@ -6,6 +6,7 @@ UDERON_CONSTANTS:
             - index.php
             - list.php
             - login.html
+            - slist.php
     TEMPLATE_PARAMS:
         css_version: 1.41
     BUILD_DIR: uderon.com
