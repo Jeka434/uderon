@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /scripts/
 Disallow: /images/
-Disallow: /errors/
+Disallow: /error.php
+Allow: /

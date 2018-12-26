@@ -1,0 +1,19 @@
+{% block top %}{% endblock %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+{% block head %}
+    <meta charset='UTF-8'>
+    <meta name="description" content="База данных пидарков">
+    <title>{% block title %}{% endblock %} — Uderon</title>
+    <link rel='stylesheet' type='text/css' href='/styles/style.css?v={{ css_version }}' />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+{% endblock %}
+  </head>
+  <body>
+    <div id="content">
+{% block content %}
+{% endblock %}
+    </div>
+  </body>
+</html>

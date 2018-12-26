@@ -1,0 +1,8 @@
+{% extends "base.tmpl" %}
+
+{% block title %}Ошибка <?= htmlspecialchars($_SERVER['QUERY_STRING']); ?>{% endblock %}
+{% block content %}
+      <div id="header">
+        <h2><?= htmlspecialchars($_SERVER['QUERY_STRING']); ?>. Похоже вы пидарок. <a href="/">Добавьте себя в базу</a></h2>
+      </div>
+{% endblock %}

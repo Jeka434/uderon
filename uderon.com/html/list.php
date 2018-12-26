@@ -1,43 +1,24 @@
+<?php include_once 'liststart.php' ?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <title>Список - Uderon</title>
-    <link rel="stylesheet" type="text/css" href="/styles/mainstyle.css?v=1.2" />
+    <meta charset='UTF-8'>
+    <meta name="description" content="База данных пидарков">
+    <title>Список — Uderon</title>
+    <link rel='stylesheet' type='text/css' href='/styles/style.css?v=1.4' />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
   </head>
   <body>
-    <div class='mainBody'>
-<?php
-if (!isset($_POST['access']) || !($_POST['password'] === 'pidor')) {
-?>
-      <h2 style="font-size: 16px;">
-        <form method="post">
-          <label>Пароль: <input type="password" name="password"></label>
-          <input type="submit" name="access" value="Войти">
-        </form>
-      </h2>
-<?php
-    exit();
-}
-$connect = new mysqli("localhost", "pidor", "password", "piddb");
-$connect->query("SET NAMES 'utf8'");
-
-if (isset($_POST['del'])) {
-    $id = (int)$_POST['id'];
-    $del = $connect->query("DELETE FROM pidwart WHERE ID = $id");
-}
-
-$users = $connect->query("SELECT * FROM pidwart ORDER BY ID");
-?>
-      <div class='head'>
+    <div id="content">
+      <div id='header'>
         <h2>Всего пидарков в базе: <b><?= $users->num_rows; ?></b></h2>
       </div>
 <?php
 $num = 0;
-while (($row = $users->fetch_assoc()) != FALSE) {
-  $num++;
+while (($row = $users->fetch_assoc()) != false) {
+    $num++;
 ?>
-      <div class='userInf'>
+      <div class='user_inf'>
         <div class='urow'>
           <div class='ulabel' style='font-size: 20px;'><?= $num; ?></div>
         </div>
