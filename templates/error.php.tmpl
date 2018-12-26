@@ -1,5 +1,7 @@
 {% extends "base.tmpl" %}
-
+{% block top %}
+<?php $err = in_array($_SERVER['QUERY_STRING'], array('403', '404', '500')) ? $_SERVER['QUERY_STRING'] : '404'; ?>
+{% endblock %}
 {% block title %}Ошибка <?= htmlspecialchars($_SERVER['QUERY_STRING']); ?>{% endblock %}
 {% block content %}
       <div id="header">
