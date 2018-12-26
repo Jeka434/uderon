@@ -22,7 +22,7 @@ clean:
 	rm -rf $(SCRIPT_DIR)/build_config.php
 
 test:
-	for i in $(UDERON_DIR)/html/*; do ln -s $$i $(TEST_DIR)/`echo $$i | cut -d "/" -f 3`; done
+	for i in $(UDERON_DIR)/html/*; do ln -s $$PWD/$$i $(TEST_DIR)/`echo $$i | cut -d "/" -f 3`; done
 
 untest:
 	for i in $(TEST_DIR)/*; do ls -l $$i | grep "^l" && rm $$i; done
