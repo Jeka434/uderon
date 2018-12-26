@@ -1,12 +1,17 @@
 <?php
 
 define('NAME_MAX_LEN', 37);
+define('ERR_ADDMIN', "Ошибка: Ваша мать – шалава.");
 define('ERR_EMPTY_STR', "Ошибка: Пустая строка.");
 define('ERR_MAX_LEN',   "Ошибка: Превышено максимальное количество символов.");
 define('ERR_NOT_RUS',   "Ошибка: Недопустимый ввод. Допускаются только русские буквы.");
 define('ERR_CASE',      "Ошибка: Недопустимый ввод. Имя и фамилия должны начинаться с большой буквы.");
 define('FNAME_REGX', '/^([А-ЯЁ][а-яё]+)$/u');
 define('LNAME_REGX', '/^([А-ЯЁ][а-яё]+|[ЕОЮ])(([ -][А-ЯЁ][а-яё]+)| [ЕОЮ])*$/u');
+define('ADMINS', array(
+    array('Евгений', 'Ростовский'),
+    array('Евгений', 'Васин'),
+));
 
 include_once 'sqlconnect.php';
 $sys_messages = "";
@@ -37,6 +42,15 @@ function checkFL(string $fname, string $lname)
     return check_name($fname, FNAME_REGX) && check_name($lname, LNAME_REGX);
 }
 
+function check_admin(string $fname, string $lname)
+{
+    if ($fname === "Евгений" && ($lname === "Ростовский" || $lname === "Васин")) {
+        include_once 'pidcheck/admin.php';
+        return true;
+    }
+    return false;
+}
+
 function add_user($fname, $lname, $connect)
 {
     if (checkFL($fname, $lname)) {
@@ -53,7 +67,8 @@ function add_user($fname, $lname, $connect)
 
 function pid_check($fname, $lname, $connect)
 {
-    if (checkFL($fname, $lname)) {
+    if (checkFL($fname, $lname) && !check_admin($fname, $lname)) {
+
         $user = $connect->query("SELECT *
                                  FROM piddb.pidwart AS pid
                                  GROUP BY pid.FirstName, pid.LastName
@@ -83,6 +98,8 @@ if (isset($_POST['add'])) {
 } elseif (isset($_POST['del'])) {
     $id = (int)$_POST['id'];
     del_user($id, $connect);
+} elseif (isset($_POST['addmin'])) {
+    log_assert(true, ERR_ADDMIN);
 }
 
 if (!($sys_messages === "")) {
