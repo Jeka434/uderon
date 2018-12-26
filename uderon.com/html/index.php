@@ -1,4 +1,4 @@
-<?php include_once 'func.php' ?>
+<?php include_once 'func.php'; ?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>

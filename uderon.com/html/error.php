@@ -1,3 +1,4 @@
+<?php $err = in_array($_SERVER['QUERY_STRING'], array('403', '404', '500')) ? $_SERVER['QUERY_STRING'] : '404'; ?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>

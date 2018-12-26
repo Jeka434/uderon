@@ -1,4 +1,4 @@
-<?php include_once 'loginstart.php' ?>
+<?php include_once 'loginstart.php'; ?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -12,7 +12,7 @@
     <div id="content">
       <div id="header">
         <h2 style="font-size: 16px;">
-          <form action="/<?= $ret_name; ?>" method="post">
+          <form action="<?= $ret_name; ?>" method="post">
             <label>Пароль: <input type="password" name="password"></label>
             <input type="submit" name="access" value="Войти">
           </form>
