@@ -1,0 +1,7 @@
+{% extends "notfound.php.tmpl" %}
+
+{% block orientation %}ПИДАРАС{% endblock %}
+{% block inform %}
+      <input type='hidden' name='id' value='<?= $row['ID'] ?>'>
+      <input type='submit' name='del' value='Удалить из базы'>
+{% endblock %}

@@ -8,6 +8,11 @@ UDERON_CONSTANTS:
             - list.php
             - login.php
             - slist.php
+        - php:
+            - pidcheck:
+                - admin.php
+                - found.php
+                - notfound.php
     - TEMPLATE_PARAMS:
         - css_version: 1.41
     - BUILD_DIR: uderon.com

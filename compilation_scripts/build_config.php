@@ -9,7 +9,15 @@ define('UDERON_CONSTANTS', array(
             'list.php',
             'login.php',
             'slist.php',
-    )),
+        ),
+        'php' => array(
+            'pidcheck' => array(
+                'admin.php',
+                'found.php',
+                'notfound.php',
+            ),
+        ),
+    ),
     'TEMPLATE_PARAMS' => array(
         'css_version' => 1.41,
     ),

@@ -1,0 +1,29 @@
+<div class='user_inf'>
+{% block urows %}
+  <div class='urow'>
+    <div class='ulabel'>Имя:</div>
+    <div class='ulabeled'>{% block fname %}<?= $fname ?>{% endblock %}</div>
+  </div>
+  <div class='urow'>
+    <div class='ulabel'>Фамилия:</div>
+    <div class='ulabeled'>{% block lname %}<?= $lname ?>{% endblock %}</div>
+  </div>
+  <div class='urow'>
+    <div class='ulabel'>Ориентация:</div>
+    <div class='ulabeled'>{% block orientation %}НЕИЗВЕСТНО{% endblock %}</div>
+  </div>
+{% endblock %}
+{% block after_urows %}{% endblock %}
+{% block button %}
+  <div class='button'>
+    <form method='post'>
+{% block inform %}
+      <input type='hidden' name='fname' value='<?= $fname ?>'>
+      <input type='hidden' name='lname' value='<?= $lname ?>'>
+      <input type='submit' name='add' value='Добавить в базу'>
+{% endblock %}
+    </form>
+  </div>
+{% block after_button %}{% endblock %}
+{% endblock %}
+</div>
