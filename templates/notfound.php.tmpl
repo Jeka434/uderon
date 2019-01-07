@@ -16,8 +16,10 @@
 {% block after_urows %}{% endblock %}
 {% block button %}
   <div class='button'>
-    <form method='post'>
+    <form name='buttform' method='post' onsubmit="return vkcheck();">
 {% block inform %}
+      <input type='text' name='vkstr'>
+      <input type='checkbox' name='vkchbox'>
       <input type='hidden' name='fname' value='<?= $fname ?>'>
       <input type='hidden' name='lname' value='<?= $lname ?>'>
       <input type='submit' name='add' value='Добавить в базу'>
