@@ -105,7 +105,7 @@ function update_vk($fname, $lname, $vkstr, $connect)
     $row = find_user($fname, $lname, $connect);
     if (log_assert($row, ERR_UPDATE_VK)) {
         $vkurl = get_vkurl($vkstr);
-        $add = $connect->query("UPDATE piddb.pidwart SET vkurl='$vkurl' WHERE FirstName='$fname' AND LastName='$lname' VALUES  ('$fname', '$lname')");
+        $add = $connect->query("UPDATE piddb.pidwart SET vkurl='$vkurl' WHERE FirstName='$fname' AND LastName='$lname'");
         log_assert($add, ERR_UPDATE_VK, MSG_ADD_USER);
     }
 }
